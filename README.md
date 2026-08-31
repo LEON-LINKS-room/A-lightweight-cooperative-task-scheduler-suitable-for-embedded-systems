@@ -35,13 +35,13 @@ It allows you to enjoy the nanosecond-level response of bare-metal while getting
 
 How to use:
 
-/*Define the scheduler instance and each task node*/
+//Define the scheduler instance and each task node
 Scheduler_t scheduler;
 SchedTask_t task1_t;
 SchedTask_t task2_t;
 SchedTask_t task3_t;
 
-/*Define the task callback function*/
+//Define the task callback function
 SchedCallback_t task1_cb_func(void)
 {
 	......
@@ -57,18 +57,18 @@ SchedCallback_t task3_cb_func(void)
 	......
 }
 
-/*Initialize the scheduler and tasks*/
-Scheduler_Init(&scheduler, SYS_GetTick); /*Use system TICK, incrementing by 1 MS*/
-Scheduler_TaskInit(&task1_t, task1_cb_func, 0, 200U); /*Task 1 is executed every 200 ms*/
-Scheduler_TaskInit(&task2_t, task2_cb_func, 0, 500U); /*Task 2 is executed every 500 ms*/
-Scheduler_TaskInit(&task3_t, task3_cb_func, 0, 1000U); /*Task 3 is executed every 1000 ms*/
+//Initialize the scheduler and tasks
+Scheduler_Init(&scheduler, SYS_GetTick); //Use system TICK, incrementing by 1 MS
+Scheduler_TaskInit(&task1_t, task1_cb_func, 0, 200U); //Task 1 is executed every 200 ms
+Scheduler_TaskInit(&task2_t, task2_cb_func, 0, 500U); //Task 2 is executed every 500 ms
+Scheduler_TaskInit(&task3_t, task3_cb_func, 0, 1000U); //Task 3 is executed every 1000 ms
 
-/*Add the task to this scheduler*/
+//Add the task to this scheduler
 Scheduler_AddTask(&scheduler, &task1_t);
 Scheduler_AddTask(&scheduler, &task2_t);
 Scheduler_AddTask(&scheduler, &task3_t);
 
-/*Call within the main loop*/
+//Call within the main loop
 while(1)
 {
 	Scheduler_Run(&scheduler);
